@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Final.Views.CrearAutoPage"
+             Title="CrearAutoPage">
+    <StackLayout Padding="20">
+        <Entry Placeholder="Marca" Text="{Binding NuevoCarro.Marca}" />
+        <Entry Placeholder="Modelo" Text="{Binding NuevoCarro.Modelo}" />
+        <Button Text="Agregar Auto" Command="{Binding AddCarroCommand}" />
+    </StackLayout>
+</ContentPage>
