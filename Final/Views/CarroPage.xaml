@@ -1,0 +1,52 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Final.Views.CarroPage"
+             Title="Gestión de Carros">
+    <StackLayout Padding="20" Spacing="20">
+
+        <!-- Lista de carros -->
+        <ListView ItemsSource="{Binding Carros}"
+                  SelectedItem="{Binding CarroSeleccionado}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="{Binding Marca}" />
+                            <Label Text="{Binding Modelo}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Botones para acciones -->
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Button Text="Editar"
+                    Command="{Binding EditCarroCommand}"
+                    IsEnabled="{Binding CarroSeleccionado, Converter={StaticResource NullToBoolConverter}}" />
+            <Button Text="Eliminar"
+                    Command="{Binding DeleteCarroCommand}"
+                    IsEnabled="{Binding CarroSeleccionado, Converter={StaticResource NullToBoolConverter}}" />
+        </StackLayout>
+
+        <!-- Formulario de edición -->
+        <StackLayout IsVisible="{Binding CarroSeleccionado}">
+            <Label Text="Marca" />
+            <Entry Text="{Binding CarroSeleccionado.Marca}" />
+            <Label Text="Modelo" />
+            <Entry Text="{Binding CarroSeleccionado.Modelo}" />
+            <Button Text="Guardar Cambios"
+                    Command="{Binding EditCarroCommand}" />
+        </StackLayout>
+        
+                <Button Text="Agregar Carro"
+                Command="{Binding NavigateToCrearAutoPageCommand}" />
+
+        <!-- Botón para cerrar sesión -->
+        <Button Text="Cerrar Sesión"
+                Command="{Binding LogoutCommand}"
+                BackgroundColor="Red"
+                TextColor="White" />
+
+    </StackLayout>
+</ContentPage>

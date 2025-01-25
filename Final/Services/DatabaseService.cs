@@ -23,6 +23,15 @@ namespace Final.Services
         // Carro Operations
         public Task<List<Carro>> GetCarrosAsync() => _database.Table<Carro>().ToListAsync();
         public Task<int> SaveCarroAsync(Carro carro) => _database.InsertAsync(carro);
+        public Task<int> UpdateCarroAsync(Carro carro)
+        {
+            return _database.UpdateAsync(carro);
+        }
+
+        public Task<int> DeleteCarroAsync(Carro carro)
+        {
+            return _database.DeleteAsync(carro);
+        }
 
         // Usuario Operations
         public Task<List<Usuario>> GetUsuariosAsync() => _database.Table<Usuario>().ToListAsync();

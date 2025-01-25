@@ -7,5 +7,5 @@
         <Entry Placeholder="Marca" Text="{Binding NuevoCarro.Marca}" />
         <Entry Placeholder="Modelo" Text="{Binding NuevoCarro.Modelo}" />
         <Button Text="Agregar Auto" Command="{Binding AddCarroCommand}" />
-    </StackLayout>
+    </StackLayout>  
 </ContentPage>

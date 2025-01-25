@@ -27,8 +27,8 @@ namespace Final.ViewModel
             // Inicializar comandos
             LoginCommand = new Command(async () => await LoginAndNavigateAsync());
             NavigateToCreateUserCommand = new Command(NavigateToCreateUser);
-
         }
+
         private void NavigateToCreateUser()
         {
             Application.Current.MainPage = new NavigationPage(new Views.CreateUserPage
@@ -36,6 +36,7 @@ namespace Final.ViewModel
                 BindingContext = new CreateUserViewModel(_databaseService)
             });
         }
+
         private async Task LoginAndNavigateAsync()
         {
             var usuario = await LoginAsync();
@@ -48,7 +49,7 @@ namespace Final.ViewModel
             // Navegar según el rol del usuario
             if (usuario.EsAdmin)
             {
-                Application.Current.MainPage = new NavigationPage(new Views.CrearAutoPage()
+                Application.Current.MainPage = new NavigationPage(new Views.CarroPage()
                 {
                     BindingContext = new CarroViewModel(_databaseService)
                 });
@@ -77,5 +78,4 @@ namespace Final.ViewModel
             await _databaseService.SaveUsuarioAsync(nuevoUsuario);
         }
     }
-
 }
