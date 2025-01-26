@@ -96,6 +96,7 @@ public class CarroViewModel : BaseViewModel
 
         // Regresar a la página anterior
         await Application.Current.MainPage.Navigation.PopAsync();
+       
     }
 
     private async Task DeleteCarroAsync()

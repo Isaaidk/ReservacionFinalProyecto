@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+
 namespace Final.ViewModel
 {
     public class LoginViewModel : BaseViewModel
@@ -56,9 +57,10 @@ namespace Final.ViewModel
             }
             else
             {
+                // Aquí pasamos el UsuarioActual al ViewModel de Reservacion
                 Application.Current.MainPage = new NavigationPage(new Views.ReservacionPage()
                 {
-                    BindingContext = new ReservacionViewModel(_databaseService)
+                    BindingContext = new ReservacionViewModel(_databaseService, usuario)
                 });
             }
         }

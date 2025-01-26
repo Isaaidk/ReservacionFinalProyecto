@@ -3,24 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Final.Views.ReservacionPage"
              Title="ReservacionPage">
+    <ContentPage.BindingContext>
+        <!-- Vincula directamente el ViewModel aquí -->
+        <Binding Source="{x:Reference Name=ReservacionViewModel }" Path="BindingContext" />
+    </ContentPage.BindingContext>
+
     <StackLayout Padding="20">
+        <!-- Mostrar información básica -->
         <Label Text="Selecciona un auto" />
+
+        <!-- Picker para elegir el carro -->
         <Picker ItemsSource="{Binding Carros}" 
                 ItemDisplayBinding="{Binding Marca}" 
                 SelectedItem="{Binding CarroSeleccionado}" />
+        <!-- Botón para cerrar sesión -->
+        <Button Text="Cerrar Sesión"
+         Command="{Binding LogoutCommand}"
+         BackgroundColor="Red"
+         TextColor="White" />
 
+        <!-- Botón para crear una reservación -->
         <Button Text="Crear Reservación" Command="{Binding AddReservacionCommand}" />
 
+        <!-- Botón para eliminar todas las reservaciones -->
+        <Button Text="Delete all" Command="{Binding DeleteAllReservacionesCommand}" />
+
+        <!-- Mostrar lista de reservaciones -->
         <Label Text="Reservaciones existentes" Margin="0,20,0,10" />
-        <CollectionView ItemsSource="{Binding Reservaciones}">
+        <CollectionView ItemsSource="{Binding Reservaciones}" SelectedItem="{Binding SelectedReservacion}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" Orientation="Vertical">
-                        <Label Text="{Binding NombreCarro}" FontAttributes="Bold" />
+                        <Label Text="{Binding EmailUsuario}" FontAttributes="Bold" />
+                        <Label Text="{Binding NombreCarro}" />
                         <Label Text="{Binding FechaReserva}" />
+
+                        <!-- El botón para eliminar cada reservación -->
+                        <Button Text="Eliminar" Command="{Binding Path=BindingContext.DeleteReservacionCommand, Source={x:Reference Name=ReservacionViewModel}}" CommandParameter="{Binding .}" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <!-- Botón para eliminar una reservación seleccionada -->
+        <Button Text="Eliminar Reservación Seleccionada" 
+                Command="{Binding DeleteSelectedReservacionCommand}" 
+                IsVisible="{Binding IsReservacionSelected}" />
     </StackLayout>
 </ContentPage>
