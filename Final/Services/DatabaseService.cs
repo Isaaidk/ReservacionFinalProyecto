@@ -38,7 +38,9 @@ namespace Final.Services
         public Task<List<Usuario>> GetUsuariosAsync() => _database.Table<Usuario>().ToListAsync();
         public Task<int> SaveUsuarioAsync(Usuario usuario) => _database.InsertAsync(usuario);
         public Task<Usuario> GetUsuarioByEmailAsync(string email) => _database.Table<Usuario>().FirstOrDefaultAsync(u => u.Email == email);
-    
+        public Task<int> UpdateUsuarioAsync(Usuario usuario) => _database.UpdateAsync(usuario);
+
+
         // Reservacion Operations
         // Añadir una nueva reservación
         public Task<int> SaveReservacionAsync(Reservacion reservacion) => _database.InsertAsync(reservacion);

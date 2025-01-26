@@ -13,13 +13,13 @@ namespace Final.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         private readonly DatabaseService _databaseService;
-
         public string Email { get; set; }
         public string Contrasenia { get; set; }
         public Usuario UsuarioActual { get; private set; }
 
         public ICommand LoginCommand { get; }
         public ICommand NavigateToCreateUserCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
 
         public LoginViewModel(DatabaseService databaseService)
         {
@@ -28,8 +28,17 @@ namespace Final.ViewModel
             // Inicializar comandos
             LoginCommand = new Command(async () => await LoginAndNavigateAsync());
             NavigateToCreateUserCommand = new Command(NavigateToCreateUser);
+            ForgotPasswordCommand = new Command(NavigateToForgotPassword);
         }
 
+        private void NavigateToForgotPassword()
+        {
+            // Navegar a la página de cambio de contraseña
+            Application.Current.MainPage = new NavigationPage(new Views.ForgotPasswordPage
+            {
+                BindingContext = new EditUserViewModel(_databaseService)
+            });
+        }
         private void NavigateToCreateUser()
         {
             Application.Current.MainPage = new NavigationPage(new Views.CreateUserPage

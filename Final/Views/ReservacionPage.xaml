@@ -51,3 +51,6 @@
                 IsVisible="{Binding IsReservacionSelected}" />
     </StackLayout>
 </ContentPage>
+    
+    
+  

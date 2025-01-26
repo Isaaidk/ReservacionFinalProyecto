@@ -9,5 +9,10 @@
         <Button Text="Iniciar Sesión" Command="{Binding LoginCommand}" />
         <Button Text="Crear Usuario" Command="{Binding NavigateToCreateUserCommand}" />
 
+        <Button Text="Olvidé mi clave"
+                Command="{Binding ForgotPasswordCommand}"
+                BackgroundColor="#F44336"
+                TextColor="White" />
+
     </StackLayout>
 </ContentPage>
