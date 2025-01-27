@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Final.Views.CarroPage"
+             BackgroundColor="#004D40"
              Title="Gestión de Carros">
     <StackLayout Padding="20" Spacing="20">
 
@@ -19,6 +20,18 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <!-- Formulario de edición -->
+        <StackLayout IsVisible="{Binding CarroSeleccionado}">
+            <Label Text="Marca"  />
+            <Entry Text="{Binding CarroSeleccionado.Marca}" BackgroundColor="White" 
+       TextColor="Black" />
+            <Label Text="Modelo" />
+            <Entry Text="{Binding CarroSeleccionado.Modelo}"  BackgroundColor="White" 
+       TextColor="Black" />
+            <!--<Button Text="Guardar Cambios"
+            Command="{Binding EditCarroCommand}" />-->
+        </StackLayout>
+
         <!-- Botones para acciones -->
         <StackLayout Orientation="Horizontal" Spacing="10">
             <Button Text="Editar"
@@ -29,18 +42,13 @@
                     IsEnabled="{Binding CarroSeleccionado, Converter={StaticResource NullToBoolConverter}}" />
         </StackLayout>
 
-        <!-- Formulario de edición -->
-        <StackLayout IsVisible="{Binding CarroSeleccionado}">
-            <Label Text="Marca" />
-            <Entry Text="{Binding CarroSeleccionado.Marca}" />
-            <Label Text="Modelo" />
-            <Entry Text="{Binding CarroSeleccionado.Modelo}" />
-            <Button Text="Guardar Cambios"
-                    Command="{Binding EditCarroCommand}" />
-        </StackLayout>
+        
         
                 <Button Text="Agregar Carro"
                 Command="{Binding NavigateToCrearAutoPageCommand}" />
+
+        <!-- Botón para eliminar todas las reservaciones -->
+        <Button Text="Borrar todas las reservaciones de clientes" Command="{Binding DeleteAllReservacionesCommand}" />
 
         <!-- Botón para cerrar sesión -->
         <Button Text="Cerrar Sesión"

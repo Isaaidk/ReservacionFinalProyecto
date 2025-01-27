@@ -6,4 +6,10 @@ public partial class ForgotPasswordPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void OnBackToLoginClicked(object sender, EventArgs e)
+    {
+        // Navega de vuelta a la página principal (LoginPage)
+        await Navigation.PushAsync(new Views.LoginPage());
+    }
 }

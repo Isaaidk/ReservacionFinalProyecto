@@ -1,6 +1,7 @@
 ﻿using Final.API;
 using Final.Services;
 using Final.ViewModel;
+using Final.Views;
 
 namespace Final
 {
@@ -11,7 +12,7 @@ namespace Final
         public App()
         {
             InitializeComponent();
-
+            
             // Inicializar el servicio de base de datos
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "AppDatabase.db3");
             _databaseService = new DatabaseService(dbPath);
